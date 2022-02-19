@@ -38,3 +38,35 @@ class Circle(Shape):
     def calac_area(self):
         return self.__pi*(self.radius**2)
 
+
+
+class ShapeFactory:
+    def __init__(self,type:str='circle') -> None:
+        self.type=type
+    def create_shape(self,*args,**kwargs)->Shape:
+        if self.type=='circle':
+            raduis=float(input('enter the raduis: '))
+            return Circle(radius=raduis)
+        elif self.type=='square':
+              width=float(input('enter the width: '))
+              return Square(width=width)
+
+        elif self.type=='rectanagle':
+              width=float(input('enter the width: '))
+              height=float(input('enter the  height: '))
+              return Rectangle(width=width,height=height)
+        else:
+            raise Exception('please enter valid type shape')
+
+
+def client_code():
+    type_input=input('please enter shape type \n')
+    shape_factory=ShapeFactory(type=type_input)
+    shape=shape_factory.create_shape()
+    print(shape.calac_area())
+
+def main():
+    client_code()
+
+if __name__=='__main__':
+    main()
